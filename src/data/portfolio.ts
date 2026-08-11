@@ -263,6 +263,52 @@ export const portfolio: PortfolioData = {
       ],
       tags: ['Arduino', 'myRIO'],
       award: 'LAU Engineering Projects Day Winner',
+      cover: 'explorer-bot/rover.png',
+      coverAlt: 'The Explorer Bot rover',
+      media: [
+        {
+          type: 'image',
+          src: 'explorer-bot/rover.png',
+          alt: 'The Explorer Bot rover',
+          caption: 'The completed Explorer Bot rover.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/full-demo.mp4',
+          alt: 'Full Explorer Bot demo',
+          caption: 'Full demo of the glove-controlled Explorer Bot.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-1.mp4',
+          alt: 'Explorer Bot demo clip 1',
+          caption: 'Demo clip — glove control in action.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-2.mp4',
+          alt: 'Explorer Bot demo clip 2',
+          caption: 'Demo clip — grabber and sensors.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-3.mp4',
+          alt: 'Explorer Bot demo clip 3',
+          caption: 'Demo clip — navigating with the camera feed.',
+        },
+        {
+          type: 'image',
+          src: 'explorer-bot/glove.png',
+          alt: 'The glove control interface',
+          caption: 'The custom glove controller.',
+        },
+        {
+          type: 'image',
+          src: 'explorer-bot/rover-2.png',
+          alt: 'Another view of the Explorer Bot rover',
+          caption: 'Another view of the rover.',
+        },
+      ],
     },
     {
       slug: 'roommate-finder',
