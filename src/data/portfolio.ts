@@ -199,7 +199,13 @@ export const portfolio: PortfolioData = {
       ],
       tags: ['Flutter (Dart)', 'Flame Engine', 'Firebase'],
       links: [{ label: 'Live Demo', url: 'https://nine-lives-game.web.app/' }],
-      media: [{ type: 'videoLink', url: 'https://nine-lives-game.web.app/', label: 'Play Nine Lives', alt: 'Nine Lives game demo' }],
+      media: [
+        ...Array.from({ length: 14 }, (_, i) => ({
+          type: 'image' as const,
+          src: `nine-lives/screenshot-${String(i + 1).padStart(2, '0')}.png`,
+          alt: `Nine Lives gameplay screenshot ${i + 1}`,
+        })),
+      ],
     },
     {
       slug: 'inverted-pendulum-control',
