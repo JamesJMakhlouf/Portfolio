@@ -176,6 +176,14 @@ export const portfolio: PortfolioData = {
         'Full control stack validated in MATLAB Simscape.',
       ],
       tags: ['Arduino', 'MATLAB/Simulink'],
+      media: [
+        {
+          type: 'video',
+          src: 'trace-demo.mp4',
+          alt: 'T.R.A.C.E. robotic arm tracing a trajectory',
+          caption: 'T.R.A.C.E. in action — task-space impedance control during trajectory tracing.',
+        },
+      ],
     },
     {
       slug: 'nine-lives',
