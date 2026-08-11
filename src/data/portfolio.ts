@@ -323,6 +323,15 @@ export const portfolio: PortfolioData = {
         'Responsive interface built with HTML, CSS, and JavaScript.',
       ],
       tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
+      cover: 'roommate-finder/Screenshot 2.png',
+      coverAlt: 'Roommate Finder platform showcase',
+      media: [
+        ...Array.from({ length: 20 }, (_, i) => ({
+          type: 'image' as const,
+          src: `roommate-finder/Screenshot ${i + 1}.png`,
+          alt: `Roommate Finder screenshot ${i + 1}`,
+        })),
+      ],
     },
   ],
 
