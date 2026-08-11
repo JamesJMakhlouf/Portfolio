@@ -58,18 +58,3 @@
   border-radius: var(--radius-sm);
   padding: 0.15rem 0.5rem;
 }
-
-.extras-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.extras-chip {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  background: var(--surface-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.3rem 0.6rem;
-}

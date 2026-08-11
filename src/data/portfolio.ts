@@ -29,14 +29,31 @@ export interface ProjectLink {
   url: string
 }
 
+export type ProjectMedia =
+  | { type: 'image'; src: string; alt: string; caption?: string }
+  | { type: 'video'; src: string; poster?: string; alt: string; caption?: string }
+  | { type: 'videoLink'; url: string; label?: string; alt: string; caption?: string }
+
 export interface Project {
+  slug: string
   title: string
   summary: string
+  longDescription?: string
+  highlights?: string[]
   tags: string[]
   links?: ProjectLink[]
   award?: string
-  image?: string
-  imageAlt?: string
+  cover?: string
+  coverAlt?: string
+  media?: ProjectMedia[]
+}
+
+export interface ResearchItem {
+  title: string
+  organization: string
+  period: string
+  description: string
+  focus: string[]
 }
 
 export interface EducationItem {
@@ -67,11 +84,11 @@ export interface PortfolioData {
   skills: SkillGroup[]
   experience: ExperienceItem[]
   projects: Project[]
+  research: ResearchItem[]
   education: EducationItem[]
   achievements: Achievement[]
   volunteering: VolunteerItem[]
   languages: Language[]
-  interests: string[]
 }
 
 export const portfolio: PortfolioData = {
@@ -147,36 +164,88 @@ export const portfolio: PortfolioData = {
 
   projects: [
     {
+      slug: 'trace-writing-robotic-arm',
       title: 'T.R.A.C.E. (Writing Robotic Arm)',
       summary:
         'Designed and 3D-printed a 3-DOF robotic arm with a task-space impedance controller for precise trajectory tracking, fully simulated in MATLAB Simscape.',
+      longDescription:
+        'T.R.A.C.E. is a 3-DOF writing robotic arm designed to trace predefined trajectories with high precision. The mechanical structure was fully 3D-printed and assembled in-house, and the controller was developed and validated in a MATLAB Simscape simulation before physical deployment.',
+      highlights: [
+        '3-DOF robotic arm with 3D-printed mechanical structure.',
+        'Implemented a task-space impedance controller for precise trajectory tracking.',
+        'Full control stack validated in MATLAB Simscape.',
+      ],
       tags: ['Arduino', 'MATLAB/Simulink'],
     },
     {
+      slug: 'nine-lives',
       title: 'Nine Lives (Game Development Project)',
       summary:
         'Multiplayer and single-player pixel-art platformer built with Flutter and the Flame engine, with real-time multiplayer powered by Firebase.',
+      longDescription:
+        'Nine Lives is a pixel-art platformer built with Flutter and the Flame game engine. It supports both single-player and real-time multiplayer modes, with synchronization handled through Firebase real-time database for a seamless online experience.',
+      highlights: [
+        'Single-player and real-time multiplayer modes.',
+        'Real-time state sync via Firebase real-time database.',
+        'Deployed and playable in the browser.',
+      ],
       tags: ['Flutter (Dart)', 'Flame Engine', 'Firebase'],
       links: [{ label: 'Live Demo', url: 'https://nine-lives-game.web.app/' }],
+      media: [{ type: 'videoLink', url: 'https://nine-lives-game.web.app/', label: 'Play Nine Lives', alt: 'Nine Lives game demo' }],
     },
     {
+      slug: 'inverted-pendulum-control',
       title: 'Inverted Pendulum Control and Swing-up',
       summary:
         'Designed and implemented swing-up and stabilization controllers using PID, fuzzy logic, LQR, and energy-based control strategies.',
+      longDescription:
+        'A control-systems study of the classic inverted pendulum problem. Several control strategies — PID, fuzzy logic, LQR, and energy-based — were designed, compared, and evaluated for both the swing-up phase and upright stabilization.',
+      highlights: [
+        'Compared PID, fuzzy, LQR, and energy-based strategies.',
+        'Designed both swing-up and stabilization controllers.',
+        'Implemented entirely in MATLAB/Simulink.',
+      ],
       tags: ['MATLAB/Simulink'],
     },
     {
+      slug: 'explorer-bot',
       title: 'Explorer Bot',
       summary:
         'Award-winning glove-controlled robotic system featuring a mechanical grabber, camera, and multiple sensors.',
+      longDescription:
+        'Explorer Bot is a glove-controlled robotic system built with an Arduino and NI myRIO. It features a mechanical grabber, an onboard camera, and a suite of sensors, all controlled through a custom glove interface. The project won the LAU Engineering Projects Day.',
+      highlights: [
+        'Glove-based remote control interface.',
+        'Mechanical grabber, camera, and multi-sensor payload.',
+        'Won LAU Engineering Projects Day.',
+      ],
       tags: ['Arduino', 'myRIO'],
       award: 'LAU Engineering Projects Day Winner',
     },
     {
+      slug: 'roommate-finder',
       title: 'Roommate Finder',
       summary:
         'Web platform that matches users with compatible roommates based on lifestyle, location, and budget.',
+      longDescription:
+        'A full-stack web platform that connects students and renters with compatible roommates. Users create a profile describing lifestyle, location, and budget preferences, and the platform surfaces the best matches.',
+      highlights: [
+        'Profile-based matching on lifestyle, location, and budget.',
+        'Full-stack app with Node.js and Express backend.',
+        'Responsive interface built with HTML, CSS, and JavaScript.',
+      ],
       tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
+    },
+  ],
+
+  research: [
+    {
+      title: 'Brain-Computer Interface Research',
+      organization: 'Lebanese American University',
+      period: 'December 2025 – Present',
+      description:
+        'Undergraduate research in Brain-Computer Interfaces (BCI), focusing on multi-channel EEG signal preprocessing to improve signal quality for downstream classification and control applications.',
+      focus: ['BCI', 'EEG Signal Processing', 'Signal Preprocessing'],
     },
   ],
 
@@ -218,6 +287,4 @@ export const portfolio: PortfolioData = {
     { name: 'French', level: 'C1' },
     { name: 'Arabic', level: 'C1' },
   ],
-
-  interests: [],
 }

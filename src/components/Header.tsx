@@ -13,16 +13,34 @@ const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export function Header() {
+interface HeaderProps {
+  onSectionNav: (id: string) => void
+}
+
+export function Header({ onSectionNav }: HeaderProps) {
   const { theme, toggleTheme } = useTheme()
   const [menuOpen, setMenuOpen] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
 
+  const handleNavClick = (event: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    event.preventDefault()
+    closeMenu()
+    onSectionNav(id)
+  }
+
   return (
     <header className="header">
       <div className="container header-inner">
-        <a href="#top" className="header-brand" onClick={closeMenu}>
+        <a
+          href="#top"
+          className="header-brand"
+          onClick={(event) => {
+            event.preventDefault()
+            closeMenu()
+            onSectionNav('top')
+          }}
+        >
           {portfolio.contact.name.split(' ')[0]}
           <span className="header-brand-accent">.</span>
         </a>
@@ -49,13 +67,16 @@ export function Header() {
 
         <nav id="site-nav" className={`nav ${menuOpen ? 'nav-open' : ''}`} aria-label="Primary">
           <ul className="nav-list">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href} className="nav-item">
-                <a href={link.href} className="nav-link" onClick={closeMenu}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const id = link.href.slice(1)
+              return (
+                <li key={link.href} className="nav-item">
+                  <a href={link.href} className="nav-link" onClick={(event) => handleNavClick(event, id)}>
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </nav>
       </div>

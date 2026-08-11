@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Local CV source (site serves public/james-makhlouf-cv.pdf)
+James Makhlouf - CV.pdf
+
 node_modules
 dist
 dist-ssr
