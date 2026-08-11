@@ -199,6 +199,8 @@ export const portfolio: PortfolioData = {
       ],
       tags: ['Flutter (Dart)', 'Flame Engine', 'Firebase'],
       links: [{ label: 'Live Demo', url: 'https://nine-lives-game.web.app/' }],
+      cover: 'nine-lives/screenshot-04.png',
+      coverAlt: 'Nine Lives gameplay screenshot',
       media: [
         ...Array.from({ length: 14 }, (_, i) => ({
           type: 'image' as const,
