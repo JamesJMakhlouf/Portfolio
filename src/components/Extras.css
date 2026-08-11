@@ -1,0 +1,75 @@
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.extras-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
+
+.extras-title {
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.extras-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.extras-volunteer {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.extras-volunteer-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.extras-volunteer-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.extras-lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.extras-lang-name {
+  font-weight: 600;
+}
+
+.extras-lang-level {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.5rem;
+}
+
+.extras-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.extras-chip {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.3rem 0.6rem;
+}
