@@ -176,12 +176,38 @@ export const portfolio: PortfolioData = {
         'Full control stack validated in MATLAB Simscape.',
       ],
       tags: ['Arduino', 'MATLAB/Simulink'],
+      cover: 'trace/trace.png',
+      coverAlt: 'The T.R.A.C.E. robotic arm holding a pen',
       media: [
         {
           type: 'video',
           src: 'trace/trace-demo.mp4',
           alt: 'T.R.A.C.E. robotic arm tracing a trajectory',
           caption: 'T.R.A.C.E. in action — task-space impedance control during trajectory tracing.',
+        },
+        {
+          type: 'image',
+          src: 'trace/trace.png',
+          alt: 'The T.R.A.C.E. robotic arm holding a pen',
+          caption: 'The assembled 3-DOF robotic arm.',
+        },
+        {
+          type: 'video',
+          src: 'trace/Mechatronics.mp4',
+          alt: 'MATLAB Simscape simulation of T.R.A.C.E.',
+          caption: 'Full trajectory traced in the MATLAB Simscape simulation.',
+        },
+        {
+          type: 'image',
+          src: 'trace/Mechatronics.png',
+          alt: 'Simulation output writing the word mechatronics',
+          caption: 'Simulation output — the arm writes "mechatronics".',
+        },
+        {
+          type: 'image',
+          src: 'trace/model.jpg',
+          alt: 'SOLIDWORKS model of the robotic arm',
+          caption: 'Mechanical design modelled in SOLIDWORKS.',
         },
       ],
     },
