@@ -179,7 +179,7 @@ export const portfolio: PortfolioData = {
       media: [
         {
           type: 'video',
-          src: 'trace-demo.mp4',
+          src: 'trace/trace-demo.mp4',
           alt: 'T.R.A.C.E. robotic arm tracing a trajectory',
           caption: 'T.R.A.C.E. in action — task-space impedance control during trajectory tracing.',
         },
