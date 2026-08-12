@@ -476,6 +476,30 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
+      slug: 'shooter-game',
+      title: 'Shooter Game',
+      summary:
+        'Browser-based shooter game built with vanilla JavaScript, HTML5 Canvas, and CSS — fully playable in the browser.',
+      longDescription:
+        'A browser-based shooter game built entirely with vanilla JavaScript, HTML5 Canvas, and CSS. Players control a shooter defending against a stream of approaching targets, with score tracking and escalating difficulty. The game runs directly in the browser with no dependencies or build step.',
+      highlights: [
+        'Built with vanilla JavaScript and HTML5 Canvas.',
+        'Score tracking with escalating difficulty.',
+        'Deployed and playable in the browser.',
+      ],
+      tags: ['JavaScript', 'HTML', 'CSS'],
+      links: [{ label: 'Live Demo', url: 'https://jamesjmakhlouf.github.io/Shooter-Game/' }],
+      media: [
+        {
+          type: 'videoLink',
+          url: 'https://jamesjmakhlouf.github.io/Shooter-Game/',
+          label: 'Play Shooter Game',
+          alt: 'Shooter Game live demo',
+          caption: 'Play the game directly in your browser.',
+        },
+      ],
+    },
+    {
       slug: 'roommate-finder',
       title: 'Roommate Finder',
       summary:
