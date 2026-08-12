@@ -489,6 +489,10 @@ export const portfolio: PortfolioData = {
         'External flow simulation visualizing pressure and velocity contours.',
       ],
       tags: ['SOLIDWORKS'],
+      links: [
+        { label: 'Engineering Drawings', url: 'gripper-model/Engineering Drawings.PDF' },
+        { label: 'Rendered Images', url: 'gripper-model/Rendered Images.pdf' },
+      ],
       cover: 'gripper-model/Screenshot 2025-12-02 221818.png',
       coverAlt: 'SOLIDWORKS model of the robotic arm',
       media: [
