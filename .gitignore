@@ -10,6 +10,10 @@ lerna-debug.log*
 # Local CV source (site serves public/james-makhlouf-cv.pdf)
 James Makhlouf - CV.pdf
 
+# Large local-only source files (exports/reference, not deployed)
+public/Presentation.pptx
+public/elevator-model/Animation (Audio 2).mp4
+
 node_modules
 dist
 dist-ssr

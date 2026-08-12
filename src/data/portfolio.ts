@@ -311,6 +311,171 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
+      slug: 'elevator-prototype',
+      title: 'L.I.F.T. (Logic-Integrated Floor Transport)',
+      summary:
+        'A functional 2-floor elevator prototype driven by an Arduino Mega, translating core Mitsulift elevator operations into physical hardware.',
+      longDescription:
+        'L.I.F.T. (Logic-Integrated Floor Transport) is a fully functional 2-floor elevator prototype and CAD model built to Mitsulift specifications. The mechanical system translates real elevator operations into hardware: a 2:1 roping mechanism for lifting force, automated landing doors with a safety curtain, a landing operating panel with LCD feedback, encoder-based speed control with deceleration, and up/down over-travel limit switches for emergency protection. A separate fully functional revolving door with IR presence sensing handles the building entrance.',
+      highlights: [
+        '2:1 roping mechanism doubling lifting force on a lower-torque motor.',
+        'Automated landing doors with IR safety curtain and servo linkage.',
+        'Landing Operating Panel (LOP) with push-button input and LCD feedback.',
+        'Encoder-based speed control with landing deceleration logic.',
+        'Up/Down Over-Travel (UOT/DOT) limit switches with emergency halt and manual reset.',
+        'Revolving entrance door with IR user detection.',
+      ],
+      tags: ['Arduino', 'C++', 'IR Sensors', 'Electronics', 'Mechanical Design'],
+      cover: 'elevator-prototype/Building Front (2).jpeg',
+      coverAlt: 'The L.I.F.T. elevator prototype building front',
+      media: [
+        {
+          type: 'video',
+          src: 'elevator-prototype/2 to 1 Roping.mp4',
+          alt: '2:1 roping mechanism in motion',
+          caption: '2:1 roping mechanism doubling the lifting force.',
+        },
+        {
+          type: 'video',
+          src: 'elevator-prototype/Deceleration.mp4',
+          alt: 'Elevator decelerating at the landing',
+          caption: 'Speed control with landing deceleration.',
+        },
+        {
+          type: 'video',
+          src: 'elevator-prototype/Door System Back.mp4',
+          alt: 'Landing door system from the back',
+          caption: 'Landing door actuation mechanism.',
+        },
+        {
+          type: 'video',
+          src: 'elevator-prototype/Emergency.mp4',
+          alt: 'Emergency halt triggered by over-travel switch',
+          caption: 'Over-travel protection triggering emergency mode.',
+        },
+        {
+          type: 'video',
+          src: 'elevator-prototype/Revolving Door.mp4',
+          alt: 'Revolving door in operation',
+          caption: 'Revolving entrance door with IR user detection.',
+        },
+        {
+          type: 'video',
+          src: 'elevator-prototype/Safety Curtain.mp4',
+          alt: 'Safety curtain detecting an obstruction',
+          caption: 'IR safety curtain stopping door closure on obstruction.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/2 to 1 System.jpeg',
+          alt: '2:1 roping system diagram',
+          caption: 'Pulley-based 2:1 roping system.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Building Front (2).jpeg',
+          alt: 'Elevator prototype installed in building front',
+          caption: 'The prototype integrated into the building front.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Door System Back.jpeg',
+          alt: 'Landing door actuator assembly',
+          caption: 'Landing door panels, guide rails, and servo motor.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/DOT.jpeg',
+          alt: 'Down over-travel switch',
+          caption: 'Down Over-Travel (DOT) limit switch.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Emergency.jpeg',
+          alt: 'Emergency system components',
+          caption: 'Emergency halt hardware.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Encoder (2).jpeg',
+          alt: 'Quadrature encoder on the motor',
+          caption: 'Quadrature encoder for speed and position tracking.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Encoder.jpeg',
+          alt: 'Encoder installation detail',
+          caption: 'Encoder attached to the traction motor.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/LOP + Door.jpeg',
+          alt: 'Landing operating panel and landing door',
+          caption: 'Landing Operating Panel (LOP) with LCD feedback.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/Motor.jpeg',
+          alt: 'Traction motor unit',
+          caption: 'Traction motor driving the roping system.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-prototype/UOT.jpeg',
+          alt: 'Up over-travel switch',
+          caption: 'Up Over-Travel (UOT) limit switch.',
+        },
+      ],
+    },
+    {
+      slug: 'elevator-model',
+      title: 'Mitsulift Elevator CAD Model',
+      summary:
+        'Detailed 3D SOLIDWORKS model of the Mitsulift elevators, covering cabin, landing doors, and machine room design.',
+      longDescription:
+        'A detailed 3D CAD model of the elevator system at Mitsulift, designed in SOLIDWORKS. The model covers the full installation scope — cabin design, landing doors, and machine room layout — with mechanical mates configured to simulate cable and roping motion during assembly animations.',
+      highlights: [
+        'Full elevator assembly modelled in SOLIDWORKS.',
+        'Cabin, landing door, and machine room sub-designs.',
+        'Mechanical mates simulating cable and roping motion.',
+      ],
+      tags: ['SOLIDWORKS'],
+      cover: 'elevator-model/Screenshot 2026-07-28 114629.png',
+      coverAlt: 'SOLIDWORKS model of the Mitsulift elevator',
+      media: [
+        {
+          type: 'video',
+          src: 'elevator-model/animation.mp4',
+          alt: 'Animation of the elevator CAD model',
+          caption: 'Assembly animation of the Mitsulift elevator model.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 114629.png',
+          alt: 'Elevator CAD model view 1',
+          caption: 'Full elevator assembly.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 114952.png',
+          alt: 'Elevator CAD model view 2',
+          caption: 'Cabin and counterweight assembly.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 115224.png',
+          alt: 'Machine room CAD design',
+          caption: 'Machine room layout.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 115908.png',
+          alt: 'Landing doors CAD design',
+          caption: 'Landing door frame and panels.',
+        },
+      ],
+    },
+    {
       slug: 'roommate-finder',
       title: 'Roommate Finder',
       summary:
