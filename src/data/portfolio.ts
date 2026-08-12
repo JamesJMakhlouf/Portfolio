@@ -175,7 +175,7 @@ export const portfolio: PortfolioData = {
         'Implemented a task-space impedance controller for precise trajectory tracking.',
         'Full control stack validated in MATLAB Simscape.',
       ],
-      tags: ['Arduino', 'MATLAB/Simulink'],
+      tags: ['C++', 'Arduino', 'MATLAB/Simulink'],
       cover: 'trace/trace.png',
       coverAlt: 'The T.R.A.C.E. robotic arm holding a pen',
       media: [
@@ -261,7 +261,7 @@ export const portfolio: PortfolioData = {
         'Mechanical grabber, camera, and multi-sensor payload.',
         'Won LAU Engineering Projects Day.',
       ],
-      tags: ['Arduino', 'myRIO'],
+      tags: ['LabVIEW', 'Arduino', 'myRIO'],
       award: 'LAU Engineering Projects Day Winner',
       cover: 'explorer-bot/rover.png',
       coverAlt: 'The Explorer Bot rover',
@@ -325,7 +325,7 @@ export const portfolio: PortfolioData = {
         'Up/Down Over-Travel (UOT/DOT) limit switches with emergency halt and manual reset.',
         'Revolving entrance door with IR user detection.',
       ],
-      tags: ['Arduino', 'C++', 'IR Sensors', 'Electronics', 'Mechanical Design'],
+      tags: ['Arduino', 'C++'],
       cover: 'elevator-prototype/Building Front (2).jpeg',
       coverAlt: 'The L.I.F.T. elevator prototype building front',
       media: [
