@@ -163,6 +163,7 @@ export const portfolio: PortfolioData = {
   ],
 
   projects: [
+
     {
       slug: 'trace-writing-robotic-arm',
       title: 'T.R.A.C.E. (Writing Robotic Arm)',
@@ -233,81 +234,6 @@ export const portfolio: PortfolioData = {
           src: `nine-lives/screenshot-${String(i + 1).padStart(2, '0')}.png`,
           alt: `Nine Lives gameplay screenshot ${i + 1}`,
         })),
-      ],
-    },
-    {
-      slug: 'inverted-pendulum-control',
-      title: 'Inverted Pendulum Control and Swing-up',
-      summary:
-        'Designed and implemented swing-up and stabilization controllers using PID, fuzzy logic, LQR, and energy-based control strategies.',
-      longDescription:
-        'A control-systems study of the classic inverted pendulum problem. Several control strategies — PID, fuzzy logic, LQR, and energy-based — were designed, compared, and evaluated for both the swing-up phase and upright stabilization.',
-      highlights: [
-        'Compared PID, fuzzy, LQR, and energy-based strategies.',
-        'Designed both swing-up and stabilization controllers.',
-        'Implemented entirely in MATLAB/Simulink.',
-      ],
-      tags: ['MATLAB/Simulink'],
-    },
-    {
-      slug: 'explorer-bot',
-      title: 'Explorer Bot',
-      summary:
-        'Award-winning glove-controlled robotic system featuring a mechanical grabber, camera, and multiple sensors.',
-      longDescription:
-        'Explorer Bot is a glove-controlled robotic system built with an Arduino and NI myRIO. It features a mechanical grabber, an onboard camera, and a suite of sensors, all controlled through a custom glove interface. The project won the LAU Engineering Projects Day.',
-      highlights: [
-        'Glove-based remote control interface.',
-        'Mechanical grabber, camera, and multi-sensor payload.',
-        'Won LAU Engineering Projects Day.',
-      ],
-      tags: ['LabVIEW', 'Arduino', 'myRIO'],
-      award: 'LAU Engineering Projects Day Winner',
-      cover: 'explorer-bot/rover.png',
-      coverAlt: 'The Explorer Bot rover',
-      media: [
-        {
-          type: 'image',
-          src: 'explorer-bot/rover.png',
-          alt: 'The Explorer Bot rover',
-          caption: 'The completed Explorer Bot rover.',
-        },
-        {
-          type: 'video',
-          src: 'explorer-bot/full-demo.mp4',
-          alt: 'Full Explorer Bot demo',
-          caption: 'Full demo of the glove-controlled Explorer Bot.',
-        },
-        {
-          type: 'video',
-          src: 'explorer-bot/demo-1.mp4',
-          alt: 'Explorer Bot demo clip 1',
-          caption: 'Demo clip — glove control in action.',
-        },
-        {
-          type: 'video',
-          src: 'explorer-bot/demo-2.mp4',
-          alt: 'Explorer Bot demo clip 2',
-          caption: 'Demo clip — grabber and sensors.',
-        },
-        {
-          type: 'video',
-          src: 'explorer-bot/demo-3.mp4',
-          alt: 'Explorer Bot demo clip 3',
-          caption: 'Demo clip — navigating with the camera feed.',
-        },
-        {
-          type: 'image',
-          src: 'explorer-bot/glove.png',
-          alt: 'The glove control interface',
-          caption: 'The custom glove controller.',
-        },
-        {
-          type: 'image',
-          src: 'explorer-bot/rover-2.png',
-          alt: 'Another view of the Explorer Bot rover',
-          caption: 'Another view of the rover.',
-        },
       ],
     },
     {
@@ -476,6 +402,128 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
+      slug: 'cup-guessing',
+      title: 'Autonomous Cup Guessing Game',
+      summary:
+        'Fully autonomous version of the classic "cups order" game — a Raspberry Pi shuffles three cups, and computer vision scores the player\'s guess.',
+      longDescription:
+        'An autonomous cup guessing system that removes the human moderator from the classic "cups order" game. On a Raspberry Pi, the system shuffles three colored cups onto a display conveyor, starts a timer, and uses a Pi Camera with HSV-filtered computer vision to read the player\'s arrangement. The LCD reports how many cups sit in the correct position each round, tracks elapsed time on a dedicated timer thread, and announces the win once the player matches the hidden order.',
+      highlights: [
+        'Raspberry Pi-controlled non-blocking state machine for shuffling and detection.',
+        'Pi Camera + HSV computer vision for cup recognition and guess validation.',
+        'Threaded LCD timing and guess-counter feedback.',
+        'Self-contained game loop with win detection and restart.',
+      ],
+      tags: ['Raspberry Pi', 'Python', 'Computer Vision'],
+      media: [
+        {
+          type: 'video',
+          src: 'cup-guessing/demo-video.mp4',
+          alt: 'Cup Guessing Game demo video',
+          caption: 'Full demo of the autonomous cup guessing game.',
+        },
+      ],
+    },
+
+    {
+      slug: 'inverted-pendulum-control',
+      title: 'Inverted Pendulum Control and Swing-up',
+      summary:
+        'Designed and implemented swing-up and stabilization controllers using PID, fuzzy logic, LQR, and energy-based control strategies.',
+      longDescription:
+        'A control-systems study of the classic inverted pendulum problem. Several control strategies — PID, fuzzy logic, LQR, and energy-based — were designed, compared, and evaluated for both the swing-up phase and upright stabilization.',
+      highlights: [
+        'Compared PID, fuzzy, LQR, and energy-based strategies.',
+        'Designed both swing-up and stabilization controllers.',
+        'Implemented entirely in MATLAB/Simulink.',
+      ],
+      tags: ['MATLAB/Simulink'],
+    },
+    {
+      slug: 'roommate-finder',
+      title: 'Roommate Finder',
+      summary:
+        'Web platform that matches users with compatible roommates based on lifestyle, location, and budget.',
+      longDescription:
+        'A full-stack web platform that connects students and renters with compatible roommates. Users create a profile describing lifestyle, location, and budget preferences, and the platform surfaces the best matches.',
+      highlights: [
+        'Profile-based matching on lifestyle, location, and budget.',
+        'Full-stack app with Node.js and Express backend.',
+        'Responsive interface built with HTML, CSS, and JavaScript.',
+      ],
+      tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
+      cover: 'roommate-finder/Screenshot 2.png',
+      coverAlt: 'Roommate Finder platform showcase',
+      media: [
+        ...Array.from({ length: 20 }, (_, i) => ({
+          type: 'image' as const,
+          src: `roommate-finder/Screenshot ${i + 1}.png`,
+          alt: `Roommate Finder screenshot ${i + 1}`,
+        })),
+      ],
+    },
+    {
+      slug: 'explorer-bot',
+      title: 'Explorer Bot',
+      summary:
+        'Award-winning glove-controlled robotic system featuring a mechanical grabber, camera, and multiple sensors.',
+      longDescription:
+        'Explorer Bot is a glove-controlled robotic system built with an Arduino and NI myRIO. It features a mechanical grabber, an onboard camera, and a suite of sensors, all controlled through a custom glove interface. The project won the LAU Engineering Projects Day.',
+      highlights: [
+        'Glove-based remote control interface.',
+        'Mechanical grabber, camera, and multi-sensor payload.',
+        'Won LAU Engineering Projects Day.',
+      ],
+      tags: ['LabVIEW', 'Arduino', 'myRIO'],
+      award: 'LAU Engineering Projects Day Winner',
+      cover: 'explorer-bot/rover.png',
+      coverAlt: 'The Explorer Bot rover',
+      media: [
+        {
+          type: 'image',
+          src: 'explorer-bot/rover.png',
+          alt: 'The Explorer Bot rover',
+          caption: 'The completed Explorer Bot rover.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/full-demo.mp4',
+          alt: 'Full Explorer Bot demo',
+          caption: 'Full demo of the glove-controlled Explorer Bot.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-1.mp4',
+          alt: 'Explorer Bot demo clip 1',
+          caption: 'Demo clip — glove control in action.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-2.mp4',
+          alt: 'Explorer Bot demo clip 2',
+          caption: 'Demo clip — grabber and sensors.',
+        },
+        {
+          type: 'video',
+          src: 'explorer-bot/demo-3.mp4',
+          alt: 'Explorer Bot demo clip 3',
+          caption: 'Demo clip — navigating with the camera feed.',
+        },
+        {
+          type: 'image',
+          src: 'explorer-bot/glove.png',
+          alt: 'The glove control interface',
+          caption: 'The custom glove controller.',
+        },
+        {
+          type: 'image',
+          src: 'explorer-bot/rover-2.png',
+          alt: 'Another view of the Explorer Bot rover',
+          caption: 'Another view of the rover.',
+        },
+      ],
+    },
+    {
       slug: 'gripper-model',
       title: 'Robotic Arm CAD Model with Gripper',
       summary:
@@ -619,29 +667,6 @@ export const portfolio: PortfolioData = {
           type: 'image' as const,
           src: `shooter/Screenshot 2026-08-12 ${stamp}.png`,
           alt: `Shooter Game gameplay screenshot ${stamp}`,
-        })),
-      ],
-    },
-    {
-      slug: 'roommate-finder',
-      title: 'Roommate Finder',
-      summary:
-        'Web platform that matches users with compatible roommates based on lifestyle, location, and budget.',
-      longDescription:
-        'A full-stack web platform that connects students and renters with compatible roommates. Users create a profile describing lifestyle, location, and budget preferences, and the platform surfaces the best matches.',
-      highlights: [
-        'Profile-based matching on lifestyle, location, and budget.',
-        'Full-stack app with Node.js and Express backend.',
-        'Responsive interface built with HTML, CSS, and JavaScript.',
-      ],
-      tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
-      cover: 'roommate-finder/Screenshot 2.png',
-      coverAlt: 'Roommate Finder platform showcase',
-      media: [
-        ...Array.from({ length: 20 }, (_, i) => ({
-          type: 'image' as const,
-          src: `roommate-finder/Screenshot ${i + 1}.png`,
-          alt: `Roommate Finder screenshot ${i + 1}`,
         })),
       ],
     },

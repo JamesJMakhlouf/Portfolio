@@ -13,6 +13,10 @@ James Makhlouf - CV.pdf
 # Large local-only source files (exports/reference, not deployed)
 public/Presentation.pptx
 public/elevator-model/Animation (Audio 2).mp4
+public/cup-guessing/Demo Video.mov
+
+# Temporary backups
+src/data/portfolio.ts.bak
 
 node_modules
 dist
