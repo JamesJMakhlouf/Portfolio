@@ -488,7 +488,7 @@ export const portfolio: PortfolioData = {
         'Static gripper-jaw stress analysis with factor of safety.',
         'External flow simulation visualizing pressure and velocity contours.',
       ],
-      tags: ['SOLIDWORKS', 'CAD Design'],
+      tags: ['SOLIDWORKS'],
       cover: 'gripper-model/Screenshot 2025-12-02 221818.png',
       coverAlt: 'SOLIDWORKS model of the robotic arm',
       media: [
@@ -616,13 +616,6 @@ export const portfolio: PortfolioData = {
           src: `shooter/Screenshot 2026-08-12 ${stamp}.png`,
           alt: `Shooter Game gameplay screenshot ${stamp}`,
         })),
-        {
-          type: 'videoLink',
-          url: 'https://jamesjmakhlouf.github.io/Shooter-Game/',
-          label: 'Play Shooter Game',
-          alt: 'Shooter Game live demo',
-          caption: 'Play the game directly in your browser.',
-        },
       ],
     },
     {
