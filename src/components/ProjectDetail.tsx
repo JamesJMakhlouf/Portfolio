@@ -14,7 +14,7 @@ function MediaItem({ media }: { media: ProjectMedia }) {
     case 'video':
       return (
         <figure className="media-item">
-          <video className="media-video" controls preload="none" poster={media.poster} aria-label={media.alt}>
+          <video className="media-video" controls preload="none" poster={media.poster} muted={media.muted} aria-label={media.alt}>
             <source src={media.src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

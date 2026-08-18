@@ -31,7 +31,7 @@ export interface ProjectLink {
 
 export type ProjectMedia =
   | { type: 'image'; src: string; alt: string; caption?: string }
-  | { type: 'video'; src: string; poster?: string; alt: string; caption?: string }
+  | { type: 'video'; src: string; poster?: string; muted?: boolean; alt: string; caption?: string }
   | { type: 'videoLink'; url: string; label?: string; alt: string; caption?: string }
 
 export interface Project {
@@ -417,6 +417,18 @@ export const portfolio: PortfolioData = {
       tags: ['Raspberry Pi', 'Python', 'Computer Vision'],
       media: [
         {
+          type: 'image',
+          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
+          alt: 'Cup guessing game setup overview',
+          caption: 'Hardware setup of the cup guessing game.',
+        },
+        {
+          type: 'image',
+          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM (2).jpeg',
+          alt: 'Cup guessing game components close-up',
+          caption: 'Cups, conveyor, and sensor components.',
+        },
+        {
           type: 'video',
           src: 'cup-guessing/demo-video.mp4',
           alt: 'Cup Guessing Game demo video',
@@ -438,6 +450,21 @@ export const portfolio: PortfolioData = {
         'Implemented entirely in MATLAB/Simulink.',
       ],
       tags: ['MATLAB/Simulink'],
+      media: [
+        {
+          type: 'video',
+          src: 'inverted-pendulum/pendulum-demo.mp4',
+          muted: true,
+          alt: 'Inverted pendulum control demo video',
+          caption: 'Swing-up and stabilization of the inverted pendulum.',
+        },
+        {
+          type: 'image',
+          src: 'inverted-pendulum/WhatsApp Image 2026-08-17 at 10.39.18 AM.jpeg',
+          alt: 'Inverted pendulum hardware setup',
+          caption: 'Physical inverted pendulum setup.',
+        },
+      ],
     },
     {
       slug: 'roommate-finder',
@@ -688,7 +715,7 @@ export const portfolio: PortfolioData = {
       school: 'Lebanese American University',
       location: 'Byblos, Lebanon',
       degree: 'Bachelor in Mechatronics Engineering',
-      period: 'August 2023 – Present',
+      period: 'August 2023 – December 2027',
       details: ["Dean's Distinguished List", 'GPA: 4.0 / 4.0'],
     },
     {
