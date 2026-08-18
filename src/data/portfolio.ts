@@ -127,10 +127,10 @@ export const portfolio: PortfolioData = {
   experience: [
     {
       role: 'Robotics Intern',
-      company: 'Inmind.ai',
+      company: 'inmind.ai',
       location: 'Mkalles, Lebanon',
       start: 'July 2026',
-      end: 'Present',
+      end: 'August 2026',
       highlights: [
         'Developed and executed SLAM simulation pipelines in Dockerized ROS 2 environments.',
         'Built and debugged multi-node ROS 2 packages integrating driver, filter, and logger nodes for real-time processing.',
@@ -415,6 +415,8 @@ export const portfolio: PortfolioData = {
         'Self-contained game loop with win detection and restart.',
       ],
       tags: ['Raspberry Pi', 'Python', 'Computer Vision'],
+      cover: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
+      coverAlt: 'Cup guessing game hardware setup',
       media: [
         {
           type: 'image',
@@ -450,6 +452,8 @@ export const portfolio: PortfolioData = {
         'Implemented entirely in MATLAB/Simulink.',
       ],
       tags: ['MATLAB/Simulink'],
+      cover: 'inverted-pendulum/WhatsApp Image 2026-08-17 at 10.39.18 AM.jpeg',
+      coverAlt: 'Inverted pendulum hardware setup',
       media: [
         {
           type: 'video',
