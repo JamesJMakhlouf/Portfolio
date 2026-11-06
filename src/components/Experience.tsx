@@ -4,22 +4,27 @@ import './Experience.css'
 
 export function Experience() {
   return (
-    <Section id="experience" eyebrow="Career" title="Experience">
-      <ol className="timeline">
+    <Section id="experience" index="01" title="Experience">
+      <ol className="experience-list">
         {portfolio.experience.map((item) => (
-          <li key={`${item.company}-${item.role}`} className="timeline-item">
-            <div className="timeline-period" aria-label={`${item.start} to ${item.end}`}>
-              {item.start} — {item.end}
+          <li key={`${item.company}-${item.role}`} className="experience-item">
+            <div className="experience-meta">
+              <p className="experience-period">
+                {item.start} – {item.end}
+              </p>
+              <p>{item.location}</p>
             </div>
-            <h3 className="timeline-role">
-              {item.role} · <span className="timeline-company">{item.company}</span>
-            </h3>
-            <p className="timeline-location">{item.location}</p>
-            <ul className="timeline-highlights">
-              {item.highlights.map((highlight, index) => (
-                <li key={index}>{highlight}</li>
-              ))}
-            </ul>
+            <div>
+              <h3 className="experience-role">
+                {item.role}
+                <span className="experience-company">{item.company}</span>
+              </h3>
+              <ul className="experience-highlights">
+                {item.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
           </li>
         ))}
       </ol>

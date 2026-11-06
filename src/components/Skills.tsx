@@ -4,21 +4,23 @@ import './Skills.css'
 
 export function Skills() {
   return (
-    <Section id="skills" eyebrow="Stack" title="Skills">
-      <div className="skills-grid">
+    <Section id="skills" index="04" title="Skills">
+      <dl>
         {portfolio.skills.map((group) => (
-          <div key={group.title} className="skill-group">
-            <h3 className="skill-group-title">{group.title}</h3>
-            <ul className="skill-list">
-              {group.skills.map((skill) => (
-                <li key={skill} className="skill-chip">
-                  {skill}
-                </li>
-              ))}
-            </ul>
+          <div key={group.title} className="skills-row">
+            <dt>{group.title}</dt>
+            <dd>
+              <ul className="tag-list">
+                {group.skills.map((skill) => (
+                  <li key={skill} className="tag">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </Section>
   )
 }

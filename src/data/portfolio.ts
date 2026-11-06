@@ -6,8 +6,18 @@ export interface Contact {
   phone: string
   location: string
   linkedin: string
+  linkedinHandle: string
   github: string
+  githubHandle: string
   cvUrl: string
+  tagline: string
+  contactIntro: string
+  facts: Fact[]
+}
+
+export interface Fact {
+  label: string
+  value: string
 }
 
 export interface SkillGroup {
@@ -34,8 +44,12 @@ export type ProjectMedia =
   | { type: 'video'; src: string; poster?: string; muted?: boolean; alt: string; caption?: string }
   | { type: 'videoLink'; url: string; label?: string; alt: string; caption?: string }
 
+export type ProjectCategory = 'robotics' | 'mechanical' | 'software'
+
 export interface Project {
   slug: string
+  category: ProjectCategory
+  featured?: boolean
   title: string
   summary: string
   longDescription?: string
@@ -43,8 +57,8 @@ export interface Project {
   tags: string[]
   links?: ProjectLink[]
   award?: string
-  cover?: string
-  coverAlt?: string
+  cover: string
+  coverAlt: string
   media?: ProjectMedia[]
 }
 
@@ -91,6 +105,12 @@ export interface PortfolioData {
   languages: Language[]
 }
 
+export const projectCategoryLabels: Record<ProjectCategory, string> = {
+  robotics: 'Robotics & Control',
+  mechanical: 'Mechanical Design',
+  software: 'Software',
+}
+
 export const portfolio: PortfolioData = {
   contact: {
     name: 'James Makhlouf',
@@ -101,14 +121,26 @@ export const portfolio: PortfolioData = {
     phone: '+961 70-347465',
     location: 'Lebanon',
     linkedin: 'https://www.linkedin.com/in/jamesmakhlouf',
+    linkedinHandle: 'in/jamesmakhlouf',
     github: 'https://github.com/JamesJMakhlouf',
+    githubHandle: 'JamesJMakhlouf',
     cvUrl: 'james-makhlouf-cv.pdf',
+    tagline: 'Robotics, control systems, and brain-computer interfaces.',
+    contactIntro:
+      "I'm always open to research opportunities, internships, and interesting engineering conversations. Feel free to reach out.",
+    facts: [
+      { label: 'Degree', value: 'Bachelor in Mechatronics Engineering, LAU' },
+      { label: 'GPA', value: "4.0 / 4.0, Dean's Distinguished List" },
+      { label: 'Graduation', value: 'May 2028' },
+      { label: 'Research', value: 'EEG signal preprocessing for BCI' },
+      { label: 'Based in', value: 'Lebanon' },
+    ],
   },
 
   skills: [
     {
       title: 'Engineering Tools',
-      skills: ['MATLAB/Simulink', 'SOLIDWORKS', 'AutoCAD', 'ROS 2', 'CMake', 'Docker'],
+      skills: ['MATLAB/Simulink', 'SOLIDWORKS', 'AutoCAD', 'ROS 2', 'Nav2', 'CMake', 'Docker'],
     },
     {
       title: 'Programming & Development',
@@ -116,7 +148,7 @@ export const portfolio: PortfolioData = {
     },
     {
       title: 'Machine Learning',
-      skills: ['Deep Learning', 'Computer Vision', 'Neural Networks'],
+      skills: ['PyTorch', 'Deep Learning', 'Computer Vision', 'Neural Networks'],
     },
     {
       title: 'Soft Skills',
@@ -132,8 +164,9 @@ export const portfolio: PortfolioData = {
       start: 'July 2026',
       end: 'August 2026',
       highlights: [
-        'Developed and executed SLAM simulation pipelines in Dockerized ROS 2 environments.',
-        'Built and debugged multi-node ROS 2 packages integrating driver, filter, and logger nodes for real-time processing.',
+        'Built SLAM simulation pipelines and multi-node ROS 2 packages in Dockerized environments.',
+        'Developed a simulated delivery robot in C++ with ROS 2 and Nav2, featuring cancellable jobs and behavior-tree mission logic.',
+        'Trained Faster R-CNN and YOLO models in PyTorch for warehouse object detection, applying model pruning and ensembling.',
       ],
     },
     {
@@ -163,9 +196,10 @@ export const portfolio: PortfolioData = {
   ],
 
   projects: [
-
     {
       slug: 'trace-writing-robotic-arm',
+      category: 'robotics',
+      featured: true,
       title: 'T.R.A.C.E. (Writing Robotic Arm)',
       summary:
         'Designed and 3D-printed a 3-DOF robotic arm with a task-space impedance controller for precise trajectory tracking, fully simulated in MATLAB Simscape.',
@@ -213,31 +247,72 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
-      slug: 'nine-lives',
-      title: 'Nine Lives (Game Development Project)',
+      slug: 'acadbot-courier',
+      category: 'robotics',
+      featured: true,
+      title: 'AcadBot Courier',
       summary:
-        'Multiplayer and single-player pixel-art platformer built with Flutter and the Flame engine, with real-time multiplayer powered by Firebase.',
+        'ROS 2 delivery robot that accepts named pickup and dropoff jobs, drives them through Nav2, streams live progress, and reports exactly which leg failed.',
       longDescription:
-        'Nine Lives is a pixel-art platformer built with Flutter and the Flame game engine. It supports both single-player and real-time multiplayer modes, with synchronization handled through Firebase real-time database for a seamless online experience.',
+        'AcadBot Courier is the final project of my robotics internship at inmind.ai, written in C++ on ROS 2 Jazzy and Nav2 and tested in Gazebo simulation. A requester names a pickup and a dropoff, and the robot owns the coordinates. Booking and execution are deliberately separate: a service gives an instant accept or reject with a reason, while a cancellable action runs the delivery and streams feedback. If a leg cannot be completed, the robot retries and then reports the failed leg and attempt count instead of claiming success.',
       highlights: [
-        'Single-player and real-time multiplayer modes.',
-        'Real-time state sync via Firebase real-time database.',
-        'Deployed and playable in the browser.',
+        'Service for instant job acceptance; cancellable action for the long-running delivery.',
+        '1 Hz feedback reporting the current leg, target location, and distance remaining.',
+        'Configurable retries, then a failure result naming the leg and the number of attempts.',
+        'Two swappable mission engines: a C++ loop and a BehaviorTree.CPP tree loaded from XML at runtime.',
+        'Locations, retries, and timeouts live in YAML; one launch file starts the simulation, localization, Nav2, and the courier.',
       ],
-      tags: ['Flutter (Dart)', 'Flame Engine', 'Firebase'],
-      links: [{ label: 'Live Demo', url: 'https://nine-lives-game.web.app/' }],
-      cover: 'nine-lives/screenshot-04.png',
-      coverAlt: 'Nine Lives gameplay screenshot',
+      tags: ['C++', 'ROS 2', 'Nav2', 'BehaviorTree.CPP', 'Gazebo', 'Docker'],
+      cover: 'acadbot/cover.png',
+      coverAlt: 'RViz costmap of the AcadBot navigating its simulated world',
       media: [
-        ...Array.from({ length: 14 }, (_, i) => ({
-          type: 'image' as const,
-          src: `nine-lives/screenshot-${String(i + 1).padStart(2, '0')}.png`,
-          alt: `Nine Lives gameplay screenshot ${i + 1}`,
-        })),
+        {
+          type: 'video',
+          src: 'acadbot/full-run.mp4',
+          alt: 'AcadBot completing a full pickup and dropoff delivery',
+          caption: 'Full run: a complete pickup and dropoff with the live feedback stream.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/recovery.mp4',
+          alt: 'Nav2 recovery behaviors on a blocked path',
+          caption: 'Blocked path: Nav2 runs its spin and back-up recovery behaviors.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/obstacle.mp4',
+          alt: 'Obstacles added in Gazebo during a delivery',
+          caption: 'Obstacles spawned in Gazebo during a delivery, with the courier retrying the leg.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/ctrl-c-cancel.mp4',
+          alt: 'Cancelling a delivery with Ctrl+C',
+          caption: 'Ctrl+C on the client sends a cancel request during a delivery.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/timed-cancel.mp4',
+          alt: 'Client cancelling a delivery after 20 seconds',
+          caption: 'Programmatic cancel 20 seconds into a delivery.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/busy-rejection.mp4',
+          alt: 'Second job rejected while the robot is busy',
+          caption: 'A second job is rejected while the robot is already delivering.',
+        },
+        {
+          type: 'video',
+          src: 'acadbot/invalid-rejection.mp4',
+          alt: 'Job rejected for an invalid request',
+          caption: 'An invalid job request is rejected with a reason.',
+        },
       ],
     },
     {
       slug: 'elevator-prototype',
+      category: 'robotics',
       title: 'L.I.F.T. (Logic-Integrated Floor Transport)',
       summary:
         'A functional 2-floor elevator prototype driven by an Arduino Mega, translating core Mitsulift elevator operations into physical hardware.',
@@ -354,93 +429,8 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
-      slug: 'elevator-model',
-      title: 'Mitsulift Elevator CAD Model',
-      summary:
-        'Detailed 3D SOLIDWORKS model of the Mitsulift elevators, covering cabin, landing doors, and machine room design.',
-      longDescription:
-        'A detailed 3D CAD model of the elevator system at Mitsulift, designed in SOLIDWORKS. The model covers the full installation scope — cabin design, landing doors, and machine room layout — with mechanical mates configured to simulate cable and roping motion during assembly animations.',
-      highlights: [
-        'Full elevator assembly modelled in SOLIDWORKS.',
-        'Cabin, landing door, and machine room sub-designs.',
-        'Mechanical mates simulating cable and roping motion.',
-      ],
-      tags: ['SOLIDWORKS'],
-      cover: 'elevator-model/Screenshot 2026-07-28 114629.png',
-      coverAlt: 'SOLIDWORKS model of the Mitsulift elevator',
-      media: [
-        {
-          type: 'video',
-          src: 'elevator-model/animation.mp4',
-          alt: 'Animation of the elevator CAD model',
-          caption: 'Assembly animation of the Mitsulift elevator model.',
-        },
-        {
-          type: 'image',
-          src: 'elevator-model/Screenshot 2026-07-28 114629.png',
-          alt: 'Elevator CAD model view 1',
-          caption: 'Full elevator assembly.',
-        },
-        {
-          type: 'image',
-          src: 'elevator-model/Screenshot 2026-07-28 114952.png',
-          alt: 'Elevator CAD model view 2',
-          caption: 'Cabin and counterweight assembly.',
-        },
-        {
-          type: 'image',
-          src: 'elevator-model/Screenshot 2026-07-28 115224.png',
-          alt: 'Machine room CAD design',
-          caption: 'Machine room layout.',
-        },
-        {
-          type: 'image',
-          src: 'elevator-model/Screenshot 2026-07-28 115908.png',
-          alt: 'Landing doors CAD design',
-          caption: 'Landing door frame and panels.',
-        },
-      ],
-    },
-    {
-      slug: 'cup-guessing',
-      title: 'Autonomous Cup Guessing Game',
-      summary:
-        'Fully autonomous version of the classic "cups order" game — a Raspberry Pi shuffles three cups, and computer vision scores the player\'s guess.',
-      longDescription:
-        'An autonomous cup guessing system that removes the human moderator from the classic "cups order" game. On a Raspberry Pi, the system shuffles three colored cups onto a display conveyor, starts a timer, and uses a Pi Camera with HSV-filtered computer vision to read the player\'s arrangement. The LCD reports how many cups sit in the correct position each round, tracks elapsed time on a dedicated timer thread, and announces the win once the player matches the hidden order.',
-      highlights: [
-        'Raspberry Pi-controlled non-blocking state machine for shuffling and detection.',
-        'Pi Camera + HSV computer vision for cup recognition and guess validation.',
-        'Threaded LCD timing and guess-counter feedback.',
-        'Self-contained game loop with win detection and restart.',
-      ],
-      tags: ['Raspberry Pi', 'Python', 'Computer Vision'],
-      cover: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
-      coverAlt: 'Cup guessing game hardware setup',
-      media: [
-        {
-          type: 'image',
-          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
-          alt: 'Cup guessing game setup overview',
-          caption: 'Hardware setup of the cup guessing game.',
-        },
-        {
-          type: 'image',
-          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM (2).jpeg',
-          alt: 'Cup guessing game components close-up',
-          caption: 'Cups, conveyor, and sensor components.',
-        },
-        {
-          type: 'video',
-          src: 'cup-guessing/demo-video.mp4',
-          alt: 'Cup Guessing Game demo video',
-          caption: 'Full demo of the autonomous cup guessing game.',
-        },
-      ],
-    },
-
-    {
       slug: 'inverted-pendulum-control',
+      category: 'robotics',
       title: 'Inverted Pendulum Control and Swing-up',
       summary:
         'Designed and implemented swing-up and stabilization controllers using PID, fuzzy logic, LQR, and energy-based control strategies.',
@@ -471,30 +461,8 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
-      slug: 'roommate-finder',
-      title: 'Roommate Finder',
-      summary:
-        'Web platform that matches users with compatible roommates based on lifestyle, location, and budget.',
-      longDescription:
-        'A full-stack web platform that connects students and renters with compatible roommates. Users create a profile describing lifestyle, location, and budget preferences, and the platform surfaces the best matches.',
-      highlights: [
-        'Profile-based matching on lifestyle, location, and budget.',
-        'Full-stack app with Node.js and Express backend.',
-        'Responsive interface built with HTML, CSS, and JavaScript.',
-      ],
-      tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
-      cover: 'roommate-finder/Screenshot 2.png',
-      coverAlt: 'Roommate Finder platform showcase',
-      media: [
-        ...Array.from({ length: 20 }, (_, i) => ({
-          type: 'image' as const,
-          src: `roommate-finder/Screenshot ${i + 1}.png`,
-          alt: `Roommate Finder screenshot ${i + 1}`,
-        })),
-      ],
-    },
-    {
       slug: 'explorer-bot',
+      category: 'robotics',
       title: 'Explorer Bot',
       summary:
         'Award-winning glove-controlled robotic system featuring a mechanical grabber, camera, and multiple sensors.',
@@ -555,7 +523,95 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
+      slug: 'cup-guessing',
+      category: 'robotics',
+      title: 'Autonomous Cup Guessing Game',
+      summary:
+        'Fully autonomous version of the classic "cups order" game — a Raspberry Pi shuffles three cups, and computer vision scores the player\'s guess.',
+      longDescription:
+        'An autonomous cup guessing system that removes the human moderator from the classic "cups order" game. On a Raspberry Pi, the system shuffles three colored cups onto a display conveyor, starts a timer, and uses a Pi Camera with HSV-filtered computer vision to read the player\'s arrangement. The LCD reports how many cups sit in the correct position each round, tracks elapsed time on a dedicated timer thread, and announces the win once the player matches the hidden order.',
+      highlights: [
+        'Raspberry Pi-controlled non-blocking state machine for shuffling and detection.',
+        'Pi Camera + HSV computer vision for cup recognition and guess validation.',
+        'Threaded LCD timing and guess-counter feedback.',
+        'Self-contained game loop with win detection and restart.',
+      ],
+      tags: ['Raspberry Pi', 'Python', 'Computer Vision'],
+      cover: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
+      coverAlt: 'Cup guessing game hardware setup',
+      media: [
+        {
+          type: 'image',
+          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM.jpeg',
+          alt: 'Cup guessing game setup overview',
+          caption: 'Hardware setup of the cup guessing game.',
+        },
+        {
+          type: 'image',
+          src: 'cup-guessing/WhatsApp Image 2026-08-17 at 10.38.35 AM (2).jpeg',
+          alt: 'Cup guessing game components close-up',
+          caption: 'Cups, conveyor, and sensor components.',
+        },
+        {
+          type: 'video',
+          src: 'cup-guessing/demo-video.mp4',
+          alt: 'Cup Guessing Game demo video',
+          caption: 'Full demo of the autonomous cup guessing game.',
+        },
+      ],
+    },
+    {
+      slug: 'elevator-model',
+      category: 'mechanical',
+      title: 'Mitsulift Elevator CAD Model',
+      summary:
+        'Detailed 3D SOLIDWORKS model of the Mitsulift elevators, covering cabin, landing doors, and machine room design.',
+      longDescription:
+        'A detailed 3D CAD model of the elevator system at Mitsulift, designed in SOLIDWORKS. The model covers the full installation scope — cabin design, landing doors, and machine room layout — with mechanical mates configured to simulate cable and roping motion during assembly animations.',
+      highlights: [
+        'Full elevator assembly modelled in SOLIDWORKS.',
+        'Cabin, landing door, and machine room sub-designs.',
+        'Mechanical mates simulating cable and roping motion.',
+      ],
+      tags: ['SOLIDWORKS'],
+      cover: 'elevator-model/Screenshot 2026-07-28 114629.png',
+      coverAlt: 'SOLIDWORKS model of the Mitsulift elevator',
+      media: [
+        {
+          type: 'video',
+          src: 'elevator-model/animation.mp4',
+          alt: 'Animation of the elevator CAD model',
+          caption: 'Assembly animation of the Mitsulift elevator model.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 114629.png',
+          alt: 'Elevator CAD model view 1',
+          caption: 'Full elevator assembly.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 114952.png',
+          alt: 'Elevator CAD model view 2',
+          caption: 'Cabin and counterweight assembly.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 115224.png',
+          alt: 'Machine room CAD design',
+          caption: 'Machine room layout.',
+        },
+        {
+          type: 'image',
+          src: 'elevator-model/Screenshot 2026-07-28 115908.png',
+          alt: 'Landing doors CAD design',
+          caption: 'Landing door frame and panels.',
+        },
+      ],
+    },
+    {
       slug: 'gripper-model',
+      category: 'mechanical',
       title: 'Robotic Arm CAD Model with Gripper',
       summary:
         '6-axis robotic arm CAD assembly in SOLIDWORKS with a two-jaw gripper, simulated in SOLIDWORKS Simulation and Flow Simulation.',
@@ -572,7 +628,7 @@ export const portfolio: PortfolioData = {
         { label: 'Engineering Drawings', url: 'gripper-model/Engineering Drawings.PDF' },
         { label: 'Rendered Images', url: 'gripper-model/Rendered Images.pdf' },
       ],
-      cover: 'gripper-model/Screenshot 2025-12-02 221818.png',
+      cover: 'gripper-model/Screenshot 2025-12-02 221915.png',
       coverAlt: 'SOLIDWORKS model of the robotic arm',
       media: [
         {
@@ -625,18 +681,18 @@ export const portfolio: PortfolioData = {
           '235044',
           '235522',
           '235549',
-        ].map((stamp) => ({
+        ].map((stamp, index) => ({
           type: 'image' as const,
           src: `gripper-model/Screenshot 2025-12-02 ${stamp}.png`,
-          alt: `Robotic arm CAD model view ${stamp}`,
+          alt: `Robotic arm CAD model, view ${index + 1}`,
         })),
         ...[
           'Screenshot 2025-12-03 000327.png',
           'Screenshot 2025-12-03 000539.png',
-        ].map((name) => ({
+        ].map((name, index) => ({
           type: 'image' as const,
           src: `gripper-model/${name}`,
-          alt: `Robotic arm CAD model view ${name.replace(/\.png$/, '')}`,
+          alt: `Robotic arm CAD model, view ${index + 44}`,
         })),
         {
           type: 'image',
@@ -671,7 +727,57 @@ export const portfolio: PortfolioData = {
       ],
     },
     {
+      slug: 'nine-lives',
+      category: 'software',
+      title: 'Nine Lives (Game Development Project)',
+      summary:
+        'Multiplayer and single-player pixel-art platformer built with Flutter and the Flame engine, with real-time multiplayer powered by Firebase.',
+      longDescription:
+        'Nine Lives is a pixel-art platformer built with Flutter and the Flame game engine. It supports both single-player and real-time multiplayer modes, with synchronization handled through Firebase real-time database for a seamless online experience.',
+      highlights: [
+        'Single-player and real-time multiplayer modes.',
+        'Real-time state sync via Firebase real-time database.',
+        'Deployed and playable in the browser.',
+      ],
+      tags: ['Flutter (Dart)', 'Flame Engine', 'Firebase'],
+      links: [{ label: 'Live Demo', url: 'https://nine-lives-game.web.app/' }],
+      cover: 'nine-lives/screenshot-04.png',
+      coverAlt: 'Nine Lives gameplay screenshot',
+      media: [
+        ...Array.from({ length: 14 }, (_, i) => ({
+          type: 'image' as const,
+          src: `nine-lives/screenshot-${String(i + 1).padStart(2, '0')}.png`,
+          alt: `Nine Lives gameplay screenshot ${i + 1}`,
+        })),
+      ],
+    },
+    {
+      slug: 'roommate-finder',
+      category: 'software',
+      title: 'Roommate Finder',
+      summary:
+        'Web platform that matches users with compatible roommates based on lifestyle, location, and budget.',
+      longDescription:
+        'A full-stack web platform that connects students and renters with compatible roommates. Users create a profile describing lifestyle, location, and budget preferences, and the platform surfaces the best matches.',
+      highlights: [
+        'Profile-based matching on lifestyle, location, and budget.',
+        'Full-stack app with Node.js and Express backend.',
+        'Responsive interface built with HTML, CSS, and JavaScript.',
+      ],
+      tags: ['Node.js', 'Express', 'JavaScript', 'HTML', 'CSS'],
+      cover: 'roommate-finder/Screenshot 2.png',
+      coverAlt: 'Roommate Finder platform showcase',
+      media: [
+        ...Array.from({ length: 20 }, (_, i) => ({
+          type: 'image' as const,
+          src: `roommate-finder/Screenshot ${i + 1}.png`,
+          alt: `Roommate Finder screenshot ${i + 1}`,
+        })),
+      ],
+    },
+    {
       slug: 'shooter-game',
+      category: 'software',
       title: 'Shooter Game',
       summary:
         'Browser-based shooter game built with vanilla JavaScript, HTML5 Canvas, and CSS — fully playable in the browser.',
@@ -683,7 +789,10 @@ export const portfolio: PortfolioData = {
         'Deployed and playable in the browser.',
       ],
       tags: ['JavaScript', 'HTML', 'CSS'],
-      links: [{ label: 'Live Demo', url: 'https://jamesjmakhlouf.github.io/Shooter-Game/' }],
+      links: [
+        { label: 'Live Demo', url: 'https://jamesjmakhlouf.github.io/Shooter-Game/' },
+        { label: 'GitHub', url: 'https://github.com/JamesJMakhlouf/Shooter-Game' },
+      ],
       cover: 'shooter/Screenshot 2026-08-12 115659.png',
       coverAlt: 'Shooter Game gameplay screenshot',
       media: [
@@ -694,10 +803,10 @@ export const portfolio: PortfolioData = {
           '115842',
           '115854',
           '115910',
-        ].map((stamp) => ({
+        ].map((stamp, index) => ({
           type: 'image' as const,
           src: `shooter/Screenshot 2026-08-12 ${stamp}.png`,
-          alt: `Shooter Game gameplay screenshot ${stamp}`,
+          alt: `Shooter Game gameplay screenshot ${index + 1}`,
         })),
       ],
     },
@@ -719,7 +828,7 @@ export const portfolio: PortfolioData = {
       school: 'Lebanese American University',
       location: 'Byblos, Lebanon',
       degree: 'Bachelor in Mechatronics Engineering',
-      period: 'August 2023 – December 2027',
+      period: 'August 2023 – May 2028',
       details: ["Dean's Distinguished List", 'GPA: 4.0 / 4.0'],
     },
     {

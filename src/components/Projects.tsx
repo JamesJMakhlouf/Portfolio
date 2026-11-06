@@ -1,77 +1,86 @@
-import { portfolio, type Project } from '../data/portfolio'
+import { useState } from 'react'
+import { portfolio, projectCategoryLabels, type Project, type ProjectCategory } from '../data/portfolio'
+import { thumbnailUrl } from '../utils/media'
 import { Section } from './Section'
 import { AwardIcon, ExternalLinkIcon } from './Icons'
 import './Projects.css'
 
-function ProjectMedia({ project }: { project: Project }) {
-  if (project.cover) {
-    return (
-      <img className="project-media" src={project.cover} alt={project.coverAlt ?? project.title} loading="lazy" />
-    )
-  }
-  return (
-    <div className="project-placeholder" role="img" aria-label="Project media placeholder">
-      <span className="project-placeholder-text">media coming soon</span>
-    </div>
-  )
-}
+type Filter = ProjectCategory | 'all'
 
-interface ProjectCardProps {
-  project: Project
-  onOpen: (slug: string) => void
-}
+const FILTERS: { value: Filter; label: string }[] = [
+  { value: 'all', label: 'All' },
+  ...(Object.entries(projectCategoryLabels) as [ProjectCategory, string][]).map(([value, label]) => ({
+    value,
+    label,
+  })),
+]
 
-function ProjectCard({ project, onOpen }: ProjectCardProps) {
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card">
-      <button type="button" className="project-card-link" onClick={() => onOpen(project.slug)}>
-        <ProjectMedia project={project} />
-        <div className="project-body">
-          <div className="project-heading">
-            <h3 className="project-title">{project.title}</h3>
-            {project.award ? (
-              <span className="project-award">
-                <AwardIcon />
-                {project.award}
-              </span>
-            ) : null}
-          </div>
-          <p className="project-summary">{project.summary}</p>
-          <ul className="project-tags" aria-label="Technologies">
-            {project.tags.map((tag) => (
-              <li key={tag} className="project-tag">
-                {tag}
+    <article className={`project-card ${project.featured ? 'project-card-featured' : ''}`}>
+      <div className="project-media">
+        <img src={thumbnailUrl(project.cover)} alt={project.coverAlt} loading="lazy" decoding="async" />
+      </div>
+      <div className="project-body">
+        <p className="project-category">{projectCategoryLabels[project.category]}</p>
+        <h3 className="project-title">
+          <a href={`#/projects/${project.slug}`} className="project-card-link">
+            {project.title}
+          </a>
+        </h3>
+        {project.award ? (
+          <p className="award-badge">
+            <AwardIcon />
+            {project.award}
+          </p>
+        ) : null}
+        <p className="project-summary">{project.summary}</p>
+        <ul className="tag-list" aria-label="Technologies">
+          {project.tags.map((tag) => (
+            <li key={tag} className="tag">
+              {tag}
+            </li>
+          ))}
+        </ul>
+        {project.links?.length ? (
+          <ul className="project-links">
+            {project.links.map((link) => (
+              <li key={link.url}>
+                <a href={link.url} target="_blank" rel="noreferrer" className="project-link">
+                  {link.label}
+                  <ExternalLinkIcon />
+                </a>
               </li>
             ))}
           </ul>
-          {project.links && project.links.length > 0 ? (
-            <ul className="project-links">
-              {project.links.map((link) => (
-                <li key={link.url}>
-                  <a href={link.url} target="_blank" rel="noreferrer" className="project-link" onClick={(e) => e.stopPropagation()}>
-                    {link.label}
-                    <ExternalLinkIcon />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-      </button>
+        ) : null}
+      </div>
     </article>
   )
 }
 
-interface ProjectsProps {
-  onOpenProject: (slug: string) => void
-}
+export function Projects() {
+  const [filter, setFilter] = useState<Filter>('all')
+  const projects = portfolio.projects.filter((project) => filter === 'all' || project.category === filter)
 
-export function Projects({ onOpenProject }: ProjectsProps) {
   return (
-    <Section id="projects" eyebrow="Builds" title="Projects">
+    <Section id="projects" index="02" title="Projects">
+      <div className="project-filters" role="group" aria-label="Filter projects by category">
+        {FILTERS.map(({ value, label }) => (
+          <button
+            key={value}
+            type="button"
+            className="project-filter"
+            aria-pressed={filter === value}
+            onClick={() => setFilter(value)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
       <div className="projects-grid">
-        {portfolio.projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} onOpen={onOpenProject} />
+        {projects.map((project) => (
+          <ProjectCard key={project.slug} project={project} />
         ))}
       </div>
     </Section>

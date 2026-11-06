@@ -4,20 +4,18 @@ import './Education.css'
 
 export function Education() {
   return (
-    <Section id="education" eyebrow="Academics" title="Education">
+    <Section id="education" index="05" title="Education">
       <ol className="education-list">
         {portfolio.education.map((item) => (
           <li key={item.school} className="education-item">
-            <div className="education-row">
-              <h3 className="education-school">{item.school}</h3>
-              <span className="education-period">{item.period}</span>
-            </div>
-            <p className="education-degree">
-              {item.degree} · {item.location}
+            <h3 className="education-school">{item.school}</h3>
+            <p className="education-degree">{item.degree}</p>
+            <p className="education-meta">
+              {item.period} · {item.location}
             </p>
             <ul className="education-details">
-              {item.details.map((detail, index) => (
-                <li key={index}>{detail}</li>
+              {item.details.map((detail) => (
+                <li key={detail}>{detail}</li>
               ))}
             </ul>
           </li>

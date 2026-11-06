@@ -1,7 +1,12 @@
+main:focus {
+  outline: none;
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
-  background: var(--bg-alt);
-  padding-block: 2rem;
+  padding-block: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
 }
 
 .site-footer-inner {
@@ -14,20 +19,4 @@
 
 .site-footer p {
   color: var(--text-muted);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.back-to-top {
-  font-size: 0.9rem;
-  font-weight: 600;
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--accent);
-}
-
-.back-to-top:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
 }

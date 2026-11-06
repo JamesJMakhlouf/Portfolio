@@ -3,20 +3,24 @@ import './Section.css'
 
 interface SectionProps {
   id: string
-  eyebrow: string
+  index: string
   title: string
   children: ReactNode
 }
 
-export function Section({ id, eyebrow, title, children }: SectionProps) {
+export function Section({ id, index, title, children }: SectionProps) {
   return (
     <section id={id} className="section" aria-labelledby={`${id}-title`}>
       <div className="container">
-        <p className="section-eyebrow">{eyebrow}</p>
-        <h2 className="section-title" id={`${id}-title`}>
-          {title}
-        </h2>
-        <div className="section-body">{children}</div>
+        <header className="section-header">
+          <span className="section-index" aria-hidden="true">
+            {index}
+          </span>
+          <h2 className="section-title" id={`${id}-title`}>
+            {title}
+          </h2>
+        </header>
+        {children}
       </div>
     </section>
   )

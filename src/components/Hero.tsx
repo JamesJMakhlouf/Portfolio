@@ -1,56 +1,61 @@
 import { portfolio } from '../data/portfolio'
-import {
-  DownloadIcon,
-  ExternalLinkIcon,
-  GitHubIcon,
-  LinkedInIcon,
-  LocationIcon,
-  MailIcon,
-  PhoneIcon,
-} from './Icons'
+import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import './Hero.css'
 
-const contactLinks = [
-  { label: 'LinkedIn', href: portfolio.contact.linkedin, icon: <LinkedInIcon /> },
-  { label: 'GitHub', href: portfolio.contact.github, icon: <GitHubIcon /> },
-  { label: 'Email', href: `mailto:${portfolio.contact.email}`, icon: <MailIcon /> },
-  { label: 'Phone', href: `tel:${portfolio.contact.phone.replace(/\s/g, '')}`, icon: <PhoneIcon /> },
-]
+const { contact } = portfolio
 
 export function Hero() {
   return (
-    <section className="hero" id="top">
+    <section className="hero" id="top" aria-labelledby="hero-name">
       <div className="container hero-inner">
-        <p className="hero-kicker">Hi, my name is</p>
-        <h1 className="hero-name">{portfolio.contact.name}</h1>
-        <p className="hero-role">{portfolio.contact.title}</p>
-        <p className="hero-summary">{portfolio.contact.summary}</p>
+        <div>
+          <p className="hero-role">{contact.title}</p>
+          <h1 className="hero-name" id="hero-name">
+            {contact.name}
+          </h1>
+          <p className="hero-tagline">{contact.tagline}</p>
+          <p className="hero-summary">{contact.summary}</p>
 
-        <div className="hero-actions">
-          <a href={portfolio.contact.cvUrl} className="btn btn-primary" download>
-            <DownloadIcon />
-            Download CV
-          </a>
-          <a href="#contact" className="btn btn-secondary">
-            Get in touch
-          </a>
+          <div className="hero-actions">
+            <a href="#projects" className="btn btn-primary">
+              View projects
+            </a>
+            <a href={contact.cvUrl} className="btn btn-secondary" download>
+              <DownloadIcon />
+              Download CV
+            </a>
+          </div>
+
+          <ul className="hero-links" aria-label="Contact links">
+            <li>
+              <a href={contact.github} target="_blank" rel="noreferrer">
+                <GitHubIcon />
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href={contact.linkedin} target="_blank" rel="noreferrer">
+                <LinkedInIcon />
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${contact.email}`}>
+                <MailIcon />
+                Email
+              </a>
+            </li>
+          </ul>
         </div>
 
-        <ul className="hero-contact" aria-label="Contact details">
-          <li className="hero-contact-item">
-            <LocationIcon />
-            <span>{portfolio.contact.location}</span>
-          </li>
-          {contactLinks.map((link) => (
-            <li key={link.label} className="hero-contact-item">
-              {link.icon}
-              <a href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
-                {link.label}
-              </a>
-              {link.href.startsWith('http') ? <ExternalLinkIcon className="hero-external" /> : null}
-            </li>
+        <dl className="title-block">
+          {contact.facts.map((fact) => (
+            <div key={fact.label} className="title-block-row">
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </div>
     </section>
   )
